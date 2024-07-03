@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eurekaadyd
+  namespace: adyd
+  labels:
+    environment: desarrollo
+    app: eurekaadyd
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: eurekaadyd
+  template:
+    metadata:
+      labels:
+        app: eurekaadyd
+    spec:
+      containers:
+      - name: eurekaadyd
+        image: gilmith/eurekaadyd:0.0.2
+        ports:
+        - containerPort: 8761

@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: adyddbsf
+  namespace: adyd
+  labels:
+    environment: desarrollo
+    app: postgree
+spec:
+  serviceName: stateful-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgree
+  template:
+    metadata:
+      labels:
+        app: postgree
+    spec:
+      containers:
+      - name: postgres
+        image: gilmith/adyd3:0.0.14
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-x", "/createdatabase/00_init-user-db.sh"]
+          preStop:
+            exec:
+              command: ["echo", "Adios"]
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: configmap1
+              key: POSTGRES_DB   
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: configmap1
+              key: POSTGRES_USER                     
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: rootpassword
+        volumeMounts:
+        - mountPath: "/var/lib/postgresql/data"
+          name: pgdata
+        - mountPath : "/tablasjuego"
+          name: tablas
+        - mountPath: "/config"
+          name: config
+  volumeClaimTemplates:
+  - metadata:
+      name: pgdata
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 100Mi
+  - metadata:
+      name: tablas
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Mi
+  - metadata:
+      name: config
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Mi
+
+      
+      

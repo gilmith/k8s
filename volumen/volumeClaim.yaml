@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: config-bbdd-claim
+  namespace: adyd
+  labels:
+    enviorment: desarrollo
+    app: postgree
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tablasjuego-bbdd-claim
+  namespace: adyd
+  labels:
+    enviorment: desarrollo
+    app: postgree
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: configserver-bbdd-claim
+  namespace: adyd
+  labels:
+    enviorment: desarrollo
+    app: postgree
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configserver
+  namespace: adyd
+  labels:
+    environment: desarrollo
+    app: configserver
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: configserver
+  template:
+    metadata:
+      labels:
+        app: configserver
+    spec:
+      containers:
+      - name: configserver
+        image: gilmith/configserver:0.0.11
+        ports:
+        - containerPort: 10001
+        env:
+        - name: USERDB
+          valueFrom:
+            secretKeyRef:
+              name: config-secret
+              key: bbdduser   
+        - name: PASSWDDB
+          valueFrom:
+            secretKeyRef:
+              name: config-secret
+              key: bbddpassword   
+        - name: KEYSTOREPASSWOD
+          valueFrom:
+            secretKeyRef:
+              name: config-secret
+              key: keypass                    
+        - name: URLDB
+          valueFrom:
+            configMapKeyRef:
+              name: cmconfigserver
+              key: URLDB

@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: config-bbdd
+  namespace: adyd
+  labels:
+    enviorment: desarrollo
+    app: postgree
+    filesystem: config
+spec:
+  capacity:
+    storage: "100Mi"
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "c:/Users/jacobo/wsmio/volume/bbdddes/bbddconfig"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tablasjuego-bbdd
+  namespace: adyd
+  labels:
+    enviorment: desarrollo
+    app: postgree
+    filesystem: tablasjuego
+spec:
+  capacity:
+    storage: "10Mi"
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "c:/Users/jacobo/wsmio/volume/bbdddes/bbddjuego"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: configserver-bbdd
+  namespace: adyd
+  labels:
+    enviorment: desarrollo
+    app: postgree
+    filesystem: config
+spec:
+  capacity:
+    storage: "10Mi"
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "c:/Users/jacobo/wsmio/volume/bbdddes/bbddconfigjuego"

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cmconfigserver
+  namespace: adyd
+  labels:
+    enviorment: desarrollo
+    app: configserver
+data:
+  USERDB: bbdduser
+  PASSWDDB: bbddpassword
+  P12PASS: p12pass
+  URLDB: jdbc:postgresql://stateful-db.adyd:5432/adyd
+  KEYSTOREPASSWOD: keypass

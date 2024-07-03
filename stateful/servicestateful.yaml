@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: stateful-db
+  namespace: adyd
+  labels:
+    environment: desarrollo
+    app: postgree
+spec:
+  ports:
+    - port: 5432
+      name: postgree
+  clusterIP: None
+  selector:
+    app: postgree
