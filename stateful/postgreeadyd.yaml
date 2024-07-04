@@ -52,6 +52,11 @@ spec:
           name: tablas
         - mountPath: "/config"
           name: config
+        livenessProbe:
+          tcpSocket:
+            port: 5432
+          initialDelaySeconds: 10
+          periodSeconds: 60
   volumeClaimTemplates:
   - metadata:
       name: pgdata
