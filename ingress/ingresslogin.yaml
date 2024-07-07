@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+   name: ingress-adyd
+   namespace: adyd
+   annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true" #redirige todo a https
+    nginx.ingress.kubernetes.io/backend-protocol: https #descubre el certificado del backend
+spec:
+  tls:
+  - hosts:
+    - adydweb.com
+    secretName: ingresscert
+  rules:
+   - host: adydweb.com
+     http:
+       paths:
+       - path: /api/login
+         pathType: Prefix
+         backend:
+           service:
+             name: servicelogin
+             port:
+               number: 10002
+       - path: /
+         pathType: Exact
+         backend:
+           service:
+             name: serviceangular
+             port:
+               number: 4200

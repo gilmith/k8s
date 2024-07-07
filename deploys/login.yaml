@@ -6,7 +6,7 @@ metadata:
   labels:
     environment: desarrollo
     app: loginadyd
-spec:
+spec:  
   replicas: 1
   strategy:
     type: RollingUpdate
@@ -23,6 +23,12 @@ spec:
     spec:
       containers:
       - name: loginadyd
-        image: gilmith/loginadyd:0.0.4
+        image: gilmith/loginadyd:0.0.7
         ports:
         - containerPort: 10002
+        env:
+        - name: URLCONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: cmconfigserver
+              key: URLCONFIG

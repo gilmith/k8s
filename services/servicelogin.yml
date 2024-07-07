@@ -1,16 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: servicepgadmin
+  name: servicelogin
   namespace: adyd
   labels:
     enviorment: desarrollo
-    app: pgadmin
+    app: loginadyd
 spec:
   selector:
-    app: pgadmin
-  type: NodePort
+    app: loginadyd
+  type: ClusterIP
   ports:
     - protocol: TCP
-      targetPort: 8080
+      port: 10002
+      targetPort: 10002
       
