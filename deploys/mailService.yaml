@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: loginadyd
+  name: mailservice
   namespace: adyd
   labels:
     environment: desarrollo
-    app: loginadyd
+    app: mailservice
 spec:  
   replicas: 1
   strategy:
@@ -15,17 +15,17 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: loginadyd
+      app: mailservice
   template:
     metadata:
       labels:
-        app: loginadyd
+        app: mailservice
     spec:
       containers:
-      - name: loginadyd
-        image: gilmith/loginadyd:0.0.14
+      - name: mailservice
+        image: gilmith/mailservice:0.0.9
         ports:
-        - containerPort: 10002
+        - containerPort: 10003
         env:
         - name: URLCONFIG
           valueFrom:

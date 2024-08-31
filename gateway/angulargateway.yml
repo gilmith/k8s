@@ -1,0 +1,19 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: angular-gateway
+  labels:
+    app: angular-app
+spec:
+  gatewayClassName: adydgateway
+  listeners:
+  - name: httpsangular
+    port: 443
+    protocol: HTTPS
+    hostname: kubernetes.docker.internal
+    tls:
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          group: ""
+          name: ingresscert

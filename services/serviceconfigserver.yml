@@ -9,8 +9,9 @@ metadata:
 spec:
   selector:
     app: configserver
-  type: ClusterIP
+  type: NodePort
   ports:
     - protocol: TCP
       port: 10001
-      targetPort: 10001      
+      targetPort: 10001
+      nodePort: 30002      

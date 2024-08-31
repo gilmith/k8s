@@ -11,4 +11,5 @@ data:
   PASSWDDB: bbddpassword
   P12PASS: p12pass
   URLDB: jdbc:postgresql://stateful-db.adyd:5432/adyd
+  URLCONFIG: https://serviceconfigserver.adyd:10001
   KEYSTOREPASSWOD: keypass
