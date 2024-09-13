@@ -5,10 +5,10 @@ metadata:
   namespace: adyd
   labels:
     enviorment: produccion
-    app: frontservice
+    app: frontadyd
 spec:
   selector:
-    app: frontservice
+    app: frontadyd
   type: LoadBalancer
   ports:
     - protocol: TCP
