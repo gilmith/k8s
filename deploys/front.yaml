@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontadyd
+  namespace: adyd
+  labels:
+    environment: produccion
+    app: frontadyd
+spec:  
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: frontadyd
+  template:
+    metadata:
+      labels:
+        app: frontadyd
+    spec:
+      containers:
+      - name: frontadyd
+        image: gilmith/adydangular18:0.0.1
+        ports:
+        - containerPort: 80
