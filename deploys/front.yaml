@@ -23,6 +23,6 @@ spec:
     spec:
       containers:
       - name: frontadyd
-        image: gilmith/adydangular18:0.0.1
+        image: gilmith/adydangular18:0.0.2
         ports:
         - containerPort: 80
