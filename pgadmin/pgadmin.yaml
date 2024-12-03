@@ -21,6 +21,11 @@ spec:
         image: dpage/pgadmin4        
         ports:
         - containerPort: 80
+        volumeMounts:
+         - name: configmappgadmin
+           mountPath: /pgadmin4/servers.json
+           subPath: servers.json
+           readOnly: true
         env:
         - name: PGADMIN_DEFAULT_EMAIL
           valueFrom:
@@ -32,3 +37,7 @@ spec:
             secretKeyRef:
               name: postgres-secret
               key: pgadminpasswd
+      volumes:
+       - name: configmappgadmin
+         configMap:
+           name: configmappgadmin
