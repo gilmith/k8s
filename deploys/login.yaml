@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: loginadyd
-        image: gilmith/loginadyd:0.0.14
+        image: gilmith/loginadyd:0.0.19
         ports:
         - containerPort: 10002
         env:
