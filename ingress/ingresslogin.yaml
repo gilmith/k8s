@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - adydweb.com
+    - 127.0.0.1
     secretName: ingresscert
   rules:
-   - host: adydweb.com
+   - host: 127.0.0.1
      http:
        paths:
        - path: /api/login
@@ -26,6 +26,6 @@ spec:
          pathType: Exact
          backend:
            service:
-             name: serviceangular
+             name: servicefront
              port:
                number: 4200
