@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: loginadyd
+  name: adydtablas
   namespace: adyd
   labels:
     environment: desarrollo
-    app: loginadyd
+    app: adydtablas
 spec:  
   replicas: 1
   strategy:
@@ -15,17 +15,17 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: loginadyd
+      app: adydtablas
   template:
     metadata:
       labels:
-        app: loginadyd
+        app: adydtablas
     spec:
       containers:
-      - name: loginadyd
-        image: gilmith/loginadyd:0.0.36
+      - name: adydtablas
+        image: gilmith/adydtablas:0.0.2
         ports:
-        - containerPort: 10002
+        - containerPort: 10004
         env:
         - name: URLCONFIG
           valueFrom:

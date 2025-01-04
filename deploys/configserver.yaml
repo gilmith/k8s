@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: configserver
-        image: gilmith/configserver:0.0.12
+        image: gilmith/configserver:0.0.15
         ports:
         - containerPort: 10001
         env:

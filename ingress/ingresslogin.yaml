@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - 127.0.0.1
+    - localhost
     secretName: ingresscert
   rules:
-   - host: 127.0.0.1
+   - host: localhost
      http:
        paths:
        - path: /api/login
