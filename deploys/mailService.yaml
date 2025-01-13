@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: mailservice
-        image: gilmith/mailservice:0.0.9
+        image: gilmith/mailservice:0.0.14
         ports:
         - containerPort: 10003
         env:
