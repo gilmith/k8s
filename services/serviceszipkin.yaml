@@ -1,17 +1,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: serviceadydtablas
+  name: servicezipkin
   namespace: adyd
   labels:
     enviorment: desarrollo
-    app: adydtablas
+    app: zipkin
 spec:
   selector:
-    app: adydtablas
+    app: zipkin
   type: NodePort
   ports:
     - protocol: TCP
-      port: 10004
-      targetPort: 10004
+      port: 9411
+      targetPort: 9411
+      nodePort: 30003
       

@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: loginadyd
+  name: zipkin
   namespace: adyd
   labels:
     environment: desarrollo
-    app: loginadyd
+    app: zipkin
 spec:  
   replicas: 1
   strategy:
@@ -15,20 +15,14 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: loginadyd
+      app: zipkin
   template:
     metadata:
       labels:
-        app: loginadyd
+        app: zipkin
     spec:
       containers:
-      - name: loginadyd
-        image: gilmith/loginadyd:0.0.38
+      - name: zipkin
+        image: bitnami/zipkin
         ports:
-        - containerPort: 10002
-        env:
-        - name: URLCONFIG
-          valueFrom:
-            configMapKeyRef:
-              name: cmconfigserver
-              key: URLCONFIG
+        - containerPort: 9411       
