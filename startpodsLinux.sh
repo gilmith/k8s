@@ -1,5 +1,5 @@
-minikube start -p desarrollo
-sleep 60
+#minikube start -p desarrollo
+#sleep 60
 echo "start db"
 ADYDDB=`kubectl --namespace adyd get pods | grep adyddb | cut -d' ' -f1`
 nohup kubectl --namespace adyd port-forward --address 0.0.0.0 ${ADYDDB} 5432:5432 &
