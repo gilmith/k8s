@@ -23,12 +23,15 @@ spec:
     spec:
       containers:
       - name: adydtablas
-        image: gilmith/adydtablas:0.0.2
+        image: gilmith/adydtablas:0.0.5
+        args: [ "java", "-jar", "adydtablas-0.0.5.jar", "--spring.config.location=file:/etc/config/application.yaml" ]
         ports:
         - containerPort: 10004
-        env:
-        - name: URLCONFIG
-          valueFrom:
-            configMapKeyRef:
-              name: cmconfigserver
-              key: URLCONFIG
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
+            readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: configadydtablas
